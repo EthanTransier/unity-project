@@ -5,14 +5,15 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 16f;
+    private float speed = 20f;
     private float jumpingPower = 28f;
     private int jumps = 2;
     private bool isFacingRight = true;
     private bool canDash = true;
     private bool isDashing;
     private float dashingPower = 8f;
-    private float dashingTime = 0.125f;
+    private float dashingPower = 50f;
+    private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
 
     [SerializeField] private Rigidbody2D rb;
