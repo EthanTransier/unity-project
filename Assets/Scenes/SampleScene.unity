@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 159979979}
   - component: {fileID: 159979978}
   - component: {fileID: 159979977}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ Transform:
   m_GameObject: {fileID: 159979976}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.38, y: -0.12, z: 0}
+  m_LocalPosition: {x: 19.35, y: 0.46, z: 0}
   m_LocalScale: {x: 10.7, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -331,11 +331,42 @@ Transform:
   m_GameObject: {fileID: 166604575}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.035, y: -0.0029999912, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3.372, y: -0.0029999912, z: 0}
+  m_LocalScale: {x: 14.845122, y: 14.845122, z: 14.845122}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &430413551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 430413552}
+  m_Layer: 0
+  m_Name: Ground Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &430413552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430413551}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1614988527}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -478,7 +509,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -486,10 +517,10 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Interpolate: 1
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!61 &1614988524
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -499,7 +530,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1614988522}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: cbd6dbb967fd979478be63bd42bd81fb, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -547,9 +578,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca19d4c2044cbf46940d7558ce635d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
-  jump: 750
-  isJumping: 0
+  rb: {fileID: 1614988523}
+  groundCheck: {fileID: 430413552}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!212 &1614988526
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -592,7 +625,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4c1c3641f784ab646a56b64e558c80ba, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.5613208, b: 0.98139775, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -611,10 +644,11 @@ Transform:
   m_GameObject: {fileID: 1614988522}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 0.13, z: 0}
+  m_LocalPosition: {x: -0.02, y: 0.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 430413552}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1949443906
@@ -628,7 +662,7 @@ GameObject:
   - component: {fileID: 1949443909}
   - component: {fileID: 1949443908}
   - component: {fileID: 1949443907}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground (2)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -758,7 +792,7 @@ GameObject:
   - component: {fileID: 2067177907}
   - component: {fileID: 2067177906}
   - component: {fileID: 2067177905}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
