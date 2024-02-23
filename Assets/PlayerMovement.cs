@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // For animation
+    public Animator animator;
+
     private float horizontal;
     private float speed = 20f;
     private float jumpingPower = 28f;
@@ -66,6 +69,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Flip();
+
+        animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
+        animator.SetFloat("VerticleSpeed", rb.velocity.y);
     }
 
     private void FixedUpdate()
