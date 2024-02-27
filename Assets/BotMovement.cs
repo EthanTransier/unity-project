@@ -5,11 +5,16 @@ public class BotMovement : MonoBehaviour
 {
     public Transform playerTransform;
     public LayerMask platformLayer;
+
+    [SerializeField] private Transform leftWallCheck;
+    [SerializeField] private Transform rightWallCheck;
+    [SerializeField] private LayerMask wallLayer;
     public float moveSpeed = 2f;
     public float gravityScale = 1f;
 
     private Rigidbody2D rb;
-    private bool isGrounded;
+
+    private bool moveRight = true;
 
     void Start()
     {
@@ -18,67 +23,67 @@ public class BotMovement : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(IsPlayerAbove());
-        if (isGrounded)
+        if (Mathf.Abs(playerTransform.position.y - transform.position.y) < 7 && Mathf.Abs(playerTransform.position.x - transform.position.x) < 15)
         {
-            if (IsPlayerAbove())
-            {
-
-            }
-            else
-            {
-                MoveToPlayerHorizontal();
-            }
+            MoveToPlayerHorizontal();
+        }
+        else
+        {
+            Idle();
         }
     }
 
-    bool IsPlayerAbove()
-    {
-        // Check if the player is directly above the enemy on the same platform
-        float playerY = playerTransform.position.y;
-        float enemyY = transform.position.y;
-        Debug.LogFormat("player {0}", playerY);
-        Debug.LogFormat("enemy {0}", enemyY);
-        Debug.Log(playerY > enemyY + 1f);
-        return playerY > enemyY + 1f;
-        // return false;
-    }
+    // bool IsPlayerAbove()
+    // {
+    //     // Check if the player is directly above the enemy on the same platform
+    //     float playerY = playerTransform.position.y;
+    //     float enemyY = transform.position.y;
+    //     Debug.LogFormat("player {0}", playerY);
+    //     Debug.LogFormat("enemy {0}", enemyY);
+    //     Debug.Log(playerY > enemyY + 1f);
+    //     return playerY > enemyY + 1f;
+    //     // return false;
+    // }
 
     void MoveToPlayerHorizontal()
     {
         float direction = Mathf.Sign(playerTransform.position.x - transform.position.x);
+        if (direction > 0)
+        {
+            moveRight = true;
+        }
+        else
+        {
+            moveRight = false;
+        }
         rb.velocity = new Vector2(direction * moveSpeed, rb.velocity.y);
     }
-
-    void JumpToPlayer()
+    void Idle()
     {
-        float heightDifference = playerTransform.position.y - transform.position.y;
-        Debug.Log("Height Difference: " + heightDifference);
-        float jumpForce = CalculateJumpForce(heightDifference);
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        isGrounded = false;
-    }
-
-    float CalculateJumpForce(float heightDifference)
-    {
-        // Adjust this value to control the jump strength
-        float jumpForceMultiplier = 5f;
-        return Mathf.Sqrt(2f * Mathf.Abs(Physics2D.gravity.y) * heightDifference) * jumpForceMultiplier;
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (IsLeftWalled())
         {
-            isGrounded = true;
+            moveRight = true;
         }
-    }
-
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        else if (IsRightWalled())
         {
-            isGrounded = false;
+            moveRight = false;
         }
+        if (moveRight)
+        {
+            rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(-1 * moveSpeed, rb.velocity.y);
+        }
+
+    }
+    private bool IsLeftWalled()
+    {
+        return Physics2D.OverlapCircle(leftWallCheck.position, 0.2f, wallLayer);
+    }
+    private bool IsRightWalled()
+    {
+        return Physics2D.OverlapCircle(rightWallCheck.position, 0.2f, wallLayer);
     }
 }
