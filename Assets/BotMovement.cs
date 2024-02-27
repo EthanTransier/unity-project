@@ -23,7 +23,7 @@ public class BotMovement : MonoBehaviour
 
     void Update()
     {
-        if (Mathf.Abs(playerTransform.position.y - transform.position.y) < 7 && Mathf.Abs(playerTransform.position.x - transform.position.x) < 15)
+        if (Mathf.Abs(playerTransform.position.y - transform.position.y) < 5 && Mathf.Abs(playerTransform.position.x - transform.position.x) < 15)
         {
             MoveToPlayerHorizontal();
         }
@@ -56,7 +56,7 @@ public class BotMovement : MonoBehaviour
         {
             moveRight = false;
         }
-        rb.velocity = new Vector2(direction * moveSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(direction * (moveSpeed + 6f), rb.velocity.y);
     }
     void Idle()
     {
