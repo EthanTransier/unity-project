@@ -18,30 +18,30 @@ public class BotMovement : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(IsPlayerAbove());
         if (isGrounded)
         {
             if (IsPlayerAbove())
             {
-                MoveToPlayerHorizontal();
+
             }
             else
             {
-                JumpToPlayer();
+                MoveToPlayerHorizontal();
             }
         }
     }
 
     bool IsPlayerAbove()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 2f, platformLayer);
-        if (hit.collider != null)
-        {
-            // Check if the player is directly above the enemy on the same platform
-            float playerY = playerTransform.position.y;
-            float enemyY = transform.position.y;
-            return playerY > enemyY && Mathf.Abs(playerTransform.position.x - transform.position.x) < 0.5f;
-        }
-        return false;
+        // Check if the player is directly above the enemy on the same platform
+        float playerY = playerTransform.position.y;
+        float enemyY = transform.position.y;
+        Debug.LogFormat("player {0}", playerY);
+        Debug.LogFormat("enemy {0}", enemyY);
+        Debug.Log(playerY > enemyY + 1f);
+        return playerY > enemyY + 1f;
+        // return false;
     }
 
     void MoveToPlayerHorizontal()
@@ -53,6 +53,7 @@ public class BotMovement : MonoBehaviour
     void JumpToPlayer()
     {
         float heightDifference = playerTransform.position.y - transform.position.y;
+        Debug.Log("Height Difference: " + heightDifference);
         float jumpForce = CalculateJumpForce(heightDifference);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         isGrounded = false;
