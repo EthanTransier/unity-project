@@ -37,8 +37,11 @@ public class MeleeAttackArea : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
+            Debug.Log(isFacingRight);
+            Debug.Log(IsIntersecting(rightAttack));
             if ((isFacingRight && IsIntersecting(rightAttack)) || (!isFacingRight && IsIntersecting(leftAttack)))
             {
+                Debug.Log("attack");
                 enemyHealth -= damage;
                 StartCoroutine(FlashCoroutine());
                 // Calculate knockback direction based on player's facing direction
@@ -54,8 +57,8 @@ public class MeleeAttackArea : MonoBehaviour
     {
         rend.material.color = flashColor;
         enemyObject.GetComponent<BotMovement>().ToggleMovement(false); // Disable movement during knockback
-        // yield return new WaitForSeconds(flashDuration);
-         yield return new WaitForSeconds(knockbackDuration);
+                                                                       // yield return new WaitForSeconds(flashDuration);
+        yield return new WaitForSeconds(knockbackDuration);
         rend.material.color = originalColor;
         // Adjust knockback duration as needed
         enemyObject.GetComponent<BotMovement>().ToggleMovement(true); // Re-enable movement after knockback
@@ -64,7 +67,13 @@ public class MeleeAttackArea : MonoBehaviour
 
     bool IsIntersecting(Transform attackPosition)
     {
-        Bounds attackBounds = new Bounds(attackPosition.position, Vector3.one);
-        return objectCollider.bounds.Intersects(attackBounds);
+        // Assuming the attack position is a point (like the position of the attack)
+        Vector3 attackPoint = attackPosition.position;
+        Debug.Log("attack position" + attackPosition.position);
+        // Calculate a small bounds around the attack point
+        Bounds attackBounds = new Bounds(attackPoint, new Vector3(1f, 1f, 1f));
+        Debug.Log("attack bounds " + attackBounds);
+        // Check for intersection with the enemy collider bounds
+        return attackBounds.Intersects(objectCollider.bounds);
     }
 }
