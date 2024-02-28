@@ -71,8 +71,9 @@ public class MeleeAttackArea : MonoBehaviour
         Vector3 attackPoint = attackPosition.position;
         Debug.Log("attack position" + attackPosition.position);
         // Calculate a small bounds around the attack point
-        Bounds attackBounds = new Bounds(attackPoint, new Vector3(1f, 1f, 1f));
+        Bounds attackBounds = new Bounds(attackPoint, new Vector3(10f, 4f, 4f));
         Debug.Log("attack bounds " + attackBounds);
+        Debug.Log("player bounds" + objectCollider.bounds);
         // Check for intersection with the enemy collider bounds
         return attackBounds.Intersects(objectCollider.bounds);
     }
