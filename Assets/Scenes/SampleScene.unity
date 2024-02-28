@@ -1798,10 +1798,10 @@ MonoBehaviour:
   objectCollider: {fileID: 1047905702}
   leftAttack: {fileID: 1380383415}
   rightAttack: {fileID: 9077586}
-  knockbackForce: 20
+  knockbackForce: 200
   flashDuration: 0.4
   flashColor: {r: 0.5622641, g: 0, b: 0.046831567, a: 1}
-  knockbackDuration: 0.05
+  knockbackDuration: 0.02
   enemyObject: {fileID: 1047905701}
 --- !u!1 &1049828958
 GameObject:
