@@ -13,8 +13,10 @@ public class BotMovement : MonoBehaviour
     public float gravityScale = 1f;
 
     private Rigidbody2D rb;
+    private bool canMove = true; // Flag to control movement
 
     private bool moveRight = true;
+
 
     void Start()
     {
@@ -23,13 +25,16 @@ public class BotMovement : MonoBehaviour
 
     void Update()
     {
-        if (Mathf.Abs(playerTransform.position.y - transform.position.y) < 5 && Mathf.Abs(playerTransform.position.x - transform.position.x) < 15)
+        if (canMove)
         {
-            MoveToPlayerHorizontal();
-        }
-        else
-        {
-            Idle();
+            if (Mathf.Abs(playerTransform.position.y - transform.position.y) < 5 && Mathf.Abs(playerTransform.position.x - transform.position.x) < 15)
+            {
+                MoveToPlayerHorizontal();
+            }
+            else
+            {
+                Idle();
+            }
         }
     }
 
@@ -85,5 +90,10 @@ public class BotMovement : MonoBehaviour
     private bool IsRightWalled()
     {
         return Physics2D.OverlapCircle(rightWallCheck.position, 0.2f, wallLayer);
+    }
+
+    public void ToggleMovement(bool enable)
+    {
+        canMove = enable;
     }
 }
