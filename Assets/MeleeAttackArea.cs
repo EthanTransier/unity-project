@@ -55,8 +55,9 @@ public class MeleeAttackArea : MonoBehaviour
         rend.material.color = flashColor;
         enemyObject.GetComponent<BotMovement>().ToggleMovement(false); // Disable movement during knockback
         // yield return new WaitForSeconds(flashDuration);
+         yield return new WaitForSeconds(knockbackDuration);
         rend.material.color = originalColor;
-        yield return new WaitForSeconds(knockbackDuration); // Adjust knockback duration as needed
+        // Adjust knockback duration as needed
         enemyObject.GetComponent<BotMovement>().ToggleMovement(true); // Re-enable movement after knockback
     }
 
