@@ -15,9 +15,7 @@ public class MeleeAttackArea : MonoBehaviour
     public Color flashColor = Color.red;
     private Color originalColor;
     private Renderer rend;
-    public float knockbackDuration = 0.5f; // Adjust the duration as needed
-
-
+    public float knockbackDuration = 0.01f; // Adjust the duration as needed
     public GameObject enemyObject;
 
     void Start()
