@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float speed = 20f;
     private float jumpingPower = 28f;
     private int jumps = 2;
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
     private bool canDash = true;
     private bool isDashing;
     // private float dashingPower = 8f;
@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
     void Update()
     {
+        // Debug.Log(IsGrounded());
         if (isDashing)
         {
             return;
