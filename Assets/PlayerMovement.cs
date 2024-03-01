@@ -59,20 +59,20 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-            // if (jumps > 0 && (!IsLeftWalled() && !IsRightWalled()))
-            // {
-            //     Debug.Log("normal jump");
-            //     rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-            //     jumps--;
-            // }
+            if (jumps > 0 && (!IsLeftWalled() && !IsRightWalled()))
+            {
+                Debug.Log("normal jump");
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+                jumps--;
+            }
             Debug.Log(rb.velocity);
 
         }
 
-        // if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
-        // {
-        //     rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-        // }
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
