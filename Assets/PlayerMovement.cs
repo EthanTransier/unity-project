@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
+
             if (IsGrounded())
             {
                 jumps = 2;
@@ -44,25 +45,34 @@ public class PlayerMovement : MonoBehaviour
 
             if (IsLeftWalled())
             {
+                Debug.Log("left jump " + (jumpingPower + 20));
                 jumps = 2;
+                rb.velocity = new Vector3(jumpingPower + 20f, jumpingPower, 0);
+            }
+            else if (IsRightWalled())
+            {
+                Debug.Log("right jump " + (jumpingPower + 20));
+                jumps = 2;
+                rb.velocity = new Vector3(-jumpingPower + 20f, jumpingPower, 0);
             }
 
-            if (IsRightWalled())
-            {
-                jumps = 2;
-            }
 
-            if (jumps > 0)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-                jumps--;
-            }
+
+
+            // if (jumps > 0 && (!IsLeftWalled() && !IsRightWalled()))
+            // {
+            //     Debug.Log("normal jump");
+            //     rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            //     jumps--;
+            // }
+            Debug.Log(rb.velocity);
+
         }
 
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-        }
+        // if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        // {
+        //     rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        // }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
