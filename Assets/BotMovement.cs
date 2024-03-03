@@ -27,7 +27,7 @@ public class BotMovement : MonoBehaviour
     {
         if (canMove)
         {
-            if (Mathf.Abs(playerTransform.position.y - transform.position.y) < 5 && Mathf.Abs(playerTransform.position.x - transform.position.x) < 15)
+            if (Mathf.Abs(playerTransform.position.y - transform.position.y) < 5 && Mathf.Abs(playerTransform.position.x - transform.position.x) < 25)
             {
                 MoveToPlayerHorizontal();
             }
