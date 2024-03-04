@@ -38,18 +38,6 @@ public class BotMovement : MonoBehaviour
         }
     }
 
-    // bool IsPlayerAbove()
-    // {
-    //     // Check if the player is directly above the enemy on the same platform
-    //     float playerY = playerTransform.position.y;
-    //     float enemyY = transform.position.y;
-    //     Debug.LogFormat("player {0}", playerY);
-    //     Debug.LogFormat("enemy {0}", enemyY);
-    //     Debug.Log(playerY > enemyY + 1f);
-    //     return playerY > enemyY + 1f;
-    //     // return false;
-    // }
-
     void MoveToPlayerHorizontal()
     {
         float direction = Mathf.Sign(playerTransform.position.x - transform.position.x);
