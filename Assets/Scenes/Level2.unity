@@ -22835,6 +22835,7 @@ GameObject:
   - component: {fileID: 1873855672}
   - component: {fileID: 1873855674}
   - component: {fileID: 1873855676}
+  - component: {fileID: 1873855677}
   m_Layer: 0
   m_Name: Enemy Projectile
   m_TagString: Untagged
@@ -22948,6 +22949,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2cb171a9e3764b44afbfa235f806c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1873855677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873855671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7897234af6627314bbe6dc914bc24dee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1250
 --- !u!1 &1874316820
 GameObject:
   m_ObjectHideFlags: 0
@@ -25358,6 +25372,7 @@ GameObject:
   - component: {fileID: 2104567104}
   - component: {fileID: 2104567109}
   - component: {fileID: 2104567110}
+  - component: {fileID: 2104567111}
   m_Layer: 0
   m_Name: Butter Drone
   m_TagString: Untagged
@@ -25377,17 +25392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e7ecd4360ba1ae4cb9f286e8c66a639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 1052913889}
-  platformLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  leftWallCheck: {fileID: 1180248234}
-  rightWallCheck: {fileID: 1831709075}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  moveSpeed: 10
-  gravityScale: 1
 --- !u!50 &2104567105
 Rigidbody2D:
   serializedVersion: 4
@@ -25521,7 +25525,7 @@ Transform:
   m_GameObject: {fileID: 2104567103}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.7722, y: 49.8819, z: 0}
+  m_LocalPosition: {x: 20.8, y: 49.8819, z: -0.89}
   m_LocalScale: {x: 0.9735, y: 0.9735, z: 0.9735}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25541,8 +25545,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ac71d4ef402b74ba2b375588f5a0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 1873855671}
-  dropInterval: 3
 --- !u!95 &2104567110
 Animator:
   serializedVersion: 5
@@ -25564,6 +25566,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2104567111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104567103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd6fef85fc76e944a28c47e3c01df37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovementGameObject: {fileID: 1052913888}
+  enemyHealth: 80
+  objectCollider: {fileID: 2104567106}
+  leftAttack: {fileID: 1180248234}
+  rightAttack: {fileID: 1831709075}
+  knockbackForce: 10
+  flashDuration: 0.4
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  knockbackDuration: 0.1
+  enemyObject: {fileID: 2104567103}
 --- !u!1 &2118545225
 GameObject:
   m_ObjectHideFlags: 0
