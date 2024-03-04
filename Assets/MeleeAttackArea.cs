@@ -56,12 +56,14 @@ public class MeleeAttackArea : MonoBehaviour
     IEnumerator FlashCoroutine()
     {
         rend.material.color = flashColor;
-        enemyObject.GetComponent<BotFlyMovement>().ToggleMovement(false); // Disable movement during knockback
+        enemyObject.GetComponent<BotMovement>().ToggleMovement(false); // Disable movement during knockback
+        // enemyObject.GetComponent<BotFlyMovement>().ToggleMovement(false);
                                                                           // yield return new WaitForSeconds(flashDuration);
         yield return new WaitForSeconds(knockbackDuration);
         rend.material.color = originalColor;
         // Adjust knockback duration as needed
-        enemyObject.GetComponent<BotFlyMovement>().ToggleMovement(true); // Re-enable movement after knockback
+        enemyObject.GetComponent<BotMovement>().ToggleMovement(true); // Re-enable movement after knockback
+        // enemyObject.GetComponent<BotFlyMovement>().ToggleMovement(true);
     }
 
 
