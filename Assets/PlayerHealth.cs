@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public float keys;
     public float health;
     public float maxHealth;
     public float damage;
